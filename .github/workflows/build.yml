@@ -1,0 +1,17 @@
+name: Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache ./downloads
+        uses: actions/cache@v4
+        with:
+          path: downloads
+          key: downloads
+      - run: make
+      - run: ls ./output
